@@ -18,7 +18,7 @@
 <processor name="JetClustering" type="LcfiplusProcessor">
 	
 	<!-- run primary and secondary vertex finders -->
-	<parameter name="Algorithms" type="stringVec"> JetClustering JetVertexRefiner</parameter>
+	<parameter name="Algorithms" type="stringVec"> JetClustering JetVertexRefiner VertexMassRecovery</parameter>
 	
 	<!-- general parameters -->
 	<parameter name="PFOCollection" type="string" value="PandoraPFOs" /> <!-- input PFO collection -->
@@ -74,12 +74,32 @@
 
 
         <!-- BNess -->
+	<parameter name="JetVertexRefiner.UseBNess" type="bool" value="1" />
 	<parameter name="JetVertexRefiner.BNessCut" type="double" value="-0.8" />
 	<parameter name="JetVertexRefiner.BNessCutE1" type="double" value="-0.15" />
-	<parameter name="JetVertexRefiner.BNessWeightFileName" type="string" value="lcfiweights/TMVAClassification_BDTG_bnesstagger_bjet_noPID.weights.xml" />
-	<parameter name="JetVertexRefiner.BNessWeightFileNameE1" type="string" value="lcfiweights/TMVAClassification_BDTG_bnesstagger_E1_bjet_noPID.weights.xml" />
+	<parameter name="JetVertexRefiner.BNessWeightFileName" type="string" value="TMVAClassification_BDTG_bnesstagger_bjet_noPID.weights.xml" />
+	<parameter name="JetVertexRefiner.BNessWeightFileNameE1" type="string" value="TMVAClassification_BDTG_bnesstagger_E1_bjet_noPID.weights.xml" />
 	<parameter name="JetVertexRefiner.BNessBookName" type="string" value="BDTG_bnesstagger_bjet" />
 	<parameter name="JetVertexRefiner.BNessBookNameE1" type="string" value="BDTG_bnesstagger_E1_bjet" />
+
+	<!-- VertexMassRecovery parameters -->
+	<parameter name="VertexMassRecovery.InputJetCollectionNames" type="string" value="RefinedJets" />
+	<parameter name="VertexMassRecovery.OutputJetCollectionName" type="string" value="RefinedJets_AttachPi0s" />
+	<parameter name="VertexMassRecovery.PrimaryVertexCollectionName" type="string" value="PrimaryVertex" />
+	<parameter name="VertexMassRecovery.OutputVertexCollectionName" type="string" value="RefinedVertices_AttachPi0s" />
+	<!-- pi0Finder parameters -->
+	<parameter name="VertexMassRecovery.Pi0PDFName" type="string" value="pdf_for_pi0ID.root" />
+	<parameter name="VertexMassRecovery.Pi0PDFName2D" type="string" value="pdf_for_pi0ID_2D.root" />
+	<!-- pi0VertexFinder parameters -->
+	<parameter name="VertexMassRecovery.WeightFileNameForSecondary1" type="string" value="TMVAClassification_BDTG_findpi0_1vtx_LCFIPlusAVF.weights.xml" />
+	<parameter name="VertexMassRecovery.WeightFileNameForSecondary2" type="string" value="TMVAClassification_BDTG_findpi0_2vtx_second_LCFIPlusAVF.weights.xml" />
+	<parameter name="VertexMassRecovery.WeightFileNameForTertiary" type="string" value="TMVAClassification_BDTG_findpi0_2vtx_third_LCFIPlusAVF.weights.xml" />
+	<parameter name="VertexMassRecovery.BookNameForSecondary1" type="string" value="BDTG_findpi0_1vtx_LCFIPlusAVF" />
+	<parameter name="VertexMassRecovery.BookNameForSecondary2" type="string" value="BDTG_findpi0_2vtx_second_LCFIPlusAVF" />
+	<parameter name="VertexMassRecovery.BookNameForTertiary" type="string" value="BDTG_findpi0_2vtx_third_LCFIPlusAVF" />
+	<parameter name="VertexMassRecovery.CutForSecondary1" type="double" value="0.86" />
+	<parameter name="VertexMassRecovery.CutForSecondary2" type="double" value="0.75" />
+	<parameter name="VertexMassRecovery.CutForTertiary" type="double" value="0.68" />
 
 </processor>
 
